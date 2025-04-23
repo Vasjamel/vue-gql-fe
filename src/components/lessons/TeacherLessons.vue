@@ -6,6 +6,7 @@ import Column from 'primevue/column'
 import { Button, ButtonGroup } from 'primevue'
 
 import { useLessonsStore } from '@/stores/lessons'
+import LessonContent from './LessonContent.vue'
 const lessonsStore = useLessonsStore()
 lessonsStore.getLessons()
 
@@ -31,7 +32,6 @@ function showContent(item) {
 
 <template>
   <div>
-    
     <header>Some good lessons</header>
 
     <Button type="button" label="Create lesson" />
@@ -72,6 +72,8 @@ function showContent(item) {
         </template>
       </Column>
     </DataTable>
+
+    <LessonContent />
   </div>
 </template>
 

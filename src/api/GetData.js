@@ -1,9 +1,7 @@
-const AuthHeader = localStorage.getItem('B-Auth-Token')
-
-const apiUrl = 'http://localhost:3333'
+const AuthHeader = localStorage.getItem(import.meta.env.VITE_API_TOKEN)
 
 function callApi({ query = '', variables = {} }) {
-  return fetch(apiUrl, {
+  return fetch(import.meta.env.VITE_API_URL, {
     method: 'POST',
     body: JSON.stringify({ query, variables }),
     headers: { Authorization: AuthHeader, 'Content-Type': 'application/json' },
