@@ -1,16 +1,18 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import TeacherLessons from './components/lessons/TeacherLessons.vue'
+import { RouterView } from 'vue-router'
+import { useRouteWatcher } from './composables/useRouteWatcher'
+
+useRouteWatcher()
 </script>
 
 <template>
   <section class="app-container">
     <header>
-      <h2>some interesting app</h2>
+      <h2>some interesting app -- header</h2>
     </header>
     <hr />
     <main class="main">
-      <TeacherLessons />
+      <RouterView />
     </main>
     <hr />
     <footer>footer</footer>
