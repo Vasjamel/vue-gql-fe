@@ -2,8 +2,7 @@
 import { computed, ref } from 'vue'
 import { storeToRefs } from 'pinia'
 import DataTable from 'primevue/datatable'
-import Column from 'primevue/column'
-import { Button, ButtonGroup } from 'primevue'
+import { Button, ButtonGroup, Column } from 'primevue'
 import { useRouter, useRoute } from 'vue-router'
 import { useLessonsStore } from '@/stores/lessons'
 
