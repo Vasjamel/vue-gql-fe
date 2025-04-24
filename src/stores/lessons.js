@@ -56,5 +56,9 @@ export const useLessonsStore = defineStore('lessons', () => {
     lessonContents.value = res.lessonContents
   }
 
-  return { getLessons, deleteLesson, getLessonContent, lessonContents, lessons }
+  function clearLessonContent() {
+    lessonContents.value = null
+  }
+
+  return { getLessons, deleteLesson, getLessonContent, clearLessonContent, lessonContents, lessons }
 })
