@@ -4,9 +4,10 @@ import { storeToRefs } from 'pinia'
 import DataTable from 'primevue/datatable'
 import Column from 'primevue/column'
 import { Button, ButtonGroup } from 'primevue'
-
+import { useRouter, useRoute } from 'vue-router'
 import { useLessonsStore } from '@/stores/lessons'
-import LessonContent from './LessonContent.vue'
+
+const router = useRouter()
 const lessonsStore = useLessonsStore()
 lessonsStore.getLessons()
 
@@ -19,14 +20,14 @@ function startEditing(item) {
 }
 function startDeleting(item) {
   const deleteConfirm = window.confirm('Are you sure?')
-  console.log({ item, deleteConfirm })
   if (deleteConfirm) {
     lessonsStore.deleteLesson(item)
   }
 }
 
 function showContent(item) {
-  console.log('show content', { item })
+  lessonsStore.getLessonContent(item)
+  router.push({ name: 'lessonContent', params: { id: item.id } })
 }
 </script>
 
@@ -41,7 +42,7 @@ function showContent(item) {
       <Column field="id" header="ID"></Column>
       <Column field="title" header="Title">
         <template #body="{ data }">
-          <span @click="showContent(data)">{{ data.title }}</span>
+          <span :style="{ cursor: 'pointer' }" @click="showContent(data)">{{ data.title }}</span>
         </template>
       </Column>
       <Column field="subject" header="Subject"></Column>
@@ -72,8 +73,6 @@ function showContent(item) {
         </template>
       </Column>
     </DataTable>
-
-    <LessonContent />
   </div>
 </template>
 

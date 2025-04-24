@@ -10,7 +10,6 @@ function callApi({ query = '', variables = {} }) {
       return res.json()
     })
     .then((data) => {
-      console.log('fetched data', data.data)
       if (data.errors) {
         console.error('Errors', data.errors)
         return data.errors
