@@ -4,6 +4,8 @@ import { storeToRefs } from 'pinia'
 import DataTable from 'primevue/datatable'
 import { Button, ButtonGroup, Column } from 'primevue'
 import { useRouter, useRoute } from 'vue-router'
+import CreateLesson from './CreateLesson.vue'
+import RouteNames from '@/router/RouteNames.enum'
 import { useLessonsStore } from '@/stores/lessons'
 
 const router = useRouter()
@@ -24,9 +26,13 @@ function startDeleting(item) {
   }
 }
 
+function redirectToCreateLesson() {
+  router.push({ name: RouteNames.CREATE_LESSON })
+}
+
 function showContent(item) {
   lessonsStore.getLessonContent(item)
-  router.push({ name: 'lessonContent', params: { id: item.id } })
+  router.push({ name: RouteNames.LESSON_CONTENT, params: { id: item.id } })
 }
 </script>
 
@@ -34,11 +40,11 @@ function showContent(item) {
   <div>
     <header>Some good lessons</header>
 
-    <Button type="button" label="Create lesson" />
+    <Button type="button" label="Create lesson" @click="redirectToCreateLesson" />
 
     <DataTable v-model:selection="selectedLessons" :value="lessons" dataKey="id">
       <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
-      <Column field="id" header="ID"></Column>
+      <!-- <Column field="id" header="ID"></Column> -->
       <Column field="title" header="Title">
         <template #body="{ data }">
           <span :style="{ cursor: 'pointer' }" @click="showContent(data)">{{ data.title }}</span>
