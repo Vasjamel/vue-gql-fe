@@ -12,9 +12,9 @@ export function useRouteWatcher() {
       if (route.name === 'lessonContent' && route.params.id) {
         return lessonsStore.getLessonContent({ id: route.params.id })
       }
-      if (oldValue.name === 'lessonContent') {
-        lessonsStore.clearLessonContent()
-      }
+      // if (oldValue.name === 'lessonContent') {
+      //   lessonsStore.clearLessonContent()
+      // }
     },
   )
 }
